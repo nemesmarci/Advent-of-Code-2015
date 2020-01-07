@@ -1,6 +1,3 @@
-import sys
+from common import read_data
 
-level = 0
-for c in sys.stdin.readline().strip():
-    level += 1 if c == '(' else -1
-print(level)
+print(sum(1 if c == '(' else -1 for c in read_data()))
