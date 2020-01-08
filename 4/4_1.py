@@ -1,8 +1,3 @@
-import sys
-import hashlib
+from common import find_hash
 
-base = sys.stdin.readline().strip()
-i = 1
-while hashlib.md5((base + str(i)).encode('utf-8')).hexdigest()[:5] != "00000":
-    i += 1
-print(i)
+print(find_hash())
