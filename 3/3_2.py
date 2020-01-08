@@ -1,15 +1,13 @@
-import sys
+from common import instructions
 
-sx, sy = 0, 0
-rx, ry = 0, 0
-houses = set([(sx, sy)])
-for i, c in enumerate(sys.stdin.readline().strip()):
-    if i % 2:    
-        sx += -1 if c == '<' else 1 if c == '>' else 0
-        sy += -1 if c == 'v' else 1 if c == '^' else 0
-        houses.add((sx, sy))
-    else:
-        rx += -1 if c == '<' else 1 if c == '>' else 0
-        ry += -1 if c == 'v' else 1 if c == '^' else 0
-        houses.add((rx, ry))
+coordinates = {'santa': (0, 0), 'robo': (0, 0)}
+houses = {coordinates['santa']}
+
+for i, (cx, cy) in enumerate(instructions()):
+    who = 'santa' if i % 2 else 'robo'
+    x, y = coordinates[who]
+
+    coordinates[who] = x + cx, y + cy
+    houses.add(coordinates[who])
+
 print(len(houses))
